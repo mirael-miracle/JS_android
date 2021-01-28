@@ -4,4 +4,11 @@
 <p>
   Роботу виконав Салютін Максим.
 </p>
-<app-group></app-group>	
+<p>last data change:
+	<span>{{changeDate|date:'dd.MM.yyyy HH:mm:ss'}}</span>
+</p>
+<app-group 
+	*ngFor="let group of groups" 
+	[group]="group"
+	(dataChange)="onDataChange($event)">
+</app-group>	

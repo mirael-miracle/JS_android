@@ -1,11 +1,34 @@
 <div class="group">
-	<img [src]="curImage">
-	<h3>Group - {{number}}</h3>
-	<p class="faculty">{{faculty}}</p>
-	<p class="specialty">Genre: {{specialty}}</p>
-	<p>Quantity musicians in groups:{{studentsQuantity}}</p>
-	<p>Group members:{{students}}</p>
-	<p>Singer:</p><pre>
+	<!-- <div class="img-container" *ngIf = "showInfo">
+		<button (click)="changeCurImage(false)"><< prev</button>
+		<button (click)="changeCurImage(true)">next >></button>
+		<div>
+			<img [src]="curImage">
+		</div>
+	</div> -->
+
+	<h3 [ngClass]="{old: isOld()}">Group - {{group.number}}</h3>
+	
+	<div *ngIf="showInfo; then btnHide else btnShow"></div>
+	<ng-template #btnHide>
+		<button (click)="showInfo=false">Hide</button>
+	</ng-template>
+	<ng-template #btnShow>
+		<button (click)="showInfo=true">Show</button>
+	</ng-template>
+
+	<div class="info" *ngIf="showInfo">
+		<div class="edit-number">
+		<input type="text"
+		[(ngModel)]="group.number"
+		(ngModelChange)="onChange()">
+		</div>
+	<p class="faculty">{{group.faculty}}</p>
+	<p class="specialty">Genre: {{group.specialty}}</p>
+	<p>Quantity musicians in groups:{{group.studentsQuantity}}</p>
+	<!-- <p>Group members:{{students}}</p> -->
+	<!-- <p>Singer:</p><pre>
 		{{starosta | json}}
-	</pre>
+	</pre> -->
+	</div>
 </div>
