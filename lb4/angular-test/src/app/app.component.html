@@ -1,14 +1,13 @@
-<h1>
-  Hello world !
-</h1>
-<p>
-  Роботу виконав Салютін Максим.
-</p>
-<p>last data change:
-	<span>{{changeDate|date:'dd.MM.yyyy HH:mm:ss'}}</span>
-</p>
+<nav>
+	<div class="nav-wrapper">
+		<a class="brand-logo">Rock Groups</a>
+	</div>
+</nav>
+<div class="container">
+<app-new-group (group)="addGroup($event)"></app-new-group>
 <app-group 
-	*ngFor="let group of groups" 
-	[group]="group"
-	(dataChange)="onDataChange($event)">
+	*ngFor="let group of groups; let i = index"
+	[group]="group" [grpIndex]="i"
+	(removeGroup)="deleteGroup($event)">
 </app-group>	
+</div>

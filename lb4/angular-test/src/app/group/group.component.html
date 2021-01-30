@@ -1,34 +1,42 @@
-<div class="group">
-	<!-- <div class="img-container" *ngIf = "showInfo">
-		<button (click)="changeCurImage(false)"><< prev</button>
-		<button (click)="changeCurImage(true)">next >></button>
-		<div>
-			<img [src]="curImage">
-		</div>
-	</div> -->
-
-	<h3 [ngClass]="{old: isOld()}">Group - {{group.number}}</h3>
-	
-	<div *ngIf="showInfo; then btnHide else btnShow"></div>
-	<ng-template #btnHide>
-		<button (click)="showInfo=false">Hide</button>
-	</ng-template>
-	<ng-template #btnShow>
-		<button (click)="showInfo=true">Show</button>
-	</ng-template>
-
-	<div class="info" *ngIf="showInfo">
-		<div class="edit-number">
-		<input type="text"
-		[(ngModel)]="group.number"
-		(ngModelChange)="onChange()">
-		</div>
-	<p class="faculty">{{group.faculty}}</p>
-	<p class="specialty">Genre: {{group.specialty}}</p>
-	<p>Quantity musicians in groups:{{group.studentsQuantity}}</p>
-	<!-- <p>Group members:{{students}}</p> -->
-	<!-- <p>Singer:</p><pre>
-		{{starosta | json}}
-	</pre> -->
+<div class="row valign-wrapper">
+	<div class="col m3 offset-m3 s6 center-align">
+		<h5>{{group.number}}</h5>
 	</div>
+	<div class="col m3 s6 center-align">
+		<a class="btn-floating waves-effect waves-light blue"
+		(click)="showInfo=!showInfo">
+			<i *ngIf="showInfo" class="material-icons">
+				keyboard_arrow_up
+			</i>
+			<i *ngIf="!showInfo" class="material-icons">
+				keyboard_arrow_down
+			</i>
+		</a>
+	</div>
+</div>
+
+<div class="info" *ngIf="showInfo">
+	<div class="input-field">
+		<input id="number" [(ngModel)]="group.number"
+				type="text" class="validate">
+		<label for="number" class="active">Name Group</label>
+	</div>
+	<div class="input-field">
+		<input id="faculty" [(ngModel)]="group.faculty"
+		type="text" class="validate">
+		<label for="faculty" class="active">Genre</label>
+	</div>
+	<div class="input-field">
+		<input id="specialty" [(ngModel)]="group.specialty"
+		type="text" class="validate">
+		<label for="specialty" class="active">Type</label>
+	</div>
+	<div class="input-field">
+		<input id="quantity" [(ngModel)]="group.studentsQuantity"
+		type="number" class="validate">
+		<label for="quantity" class="active">Number of musicians in the group</label>
+	</div>
+	<a class="rem-row btn-floating waves-effect waves-light red" (click)="delGroup()">
+		<i class="material-icons">delete</i>
+	</a>
 </div>

@@ -7,27 +7,24 @@ import { Component, EventEmitter,Input,OnInit,Output } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'angular-test-proj';
-  changeDate = new Date();
+
   groups =[
-  {
-  	number: `BMTH`,
-  	faculty:`rock`,
-  	specialty:`metal`
-  },
-  {
-  	number: `Wildways`,
-  	faculty:`rock`,
-  	specialty:`deathcore`
-  },
+    {
+  	  number: `BMTH`,
+  	  faculty:`rock`,
+  	  specialty:`metal`,
+      studentsQuantity:5
+    },
+    {
+  	   number: `Wildways`,
+  	   faculty:`rock`,
+  	   specialty:`deathcore`,
+       studentsQuantity:4
+    },
   ];
-  onDataChange(event){
-  	this.changeDate = event;
+
+  addGroup(group){
+    this.groups.push(group);
   }
-  onChange(){
-  	this.dataChange.emit(new Date());
-  }
-  @Input() group;
-@Output() dataChange = new EventEmitter();
-showInfo = false;
+  
 }

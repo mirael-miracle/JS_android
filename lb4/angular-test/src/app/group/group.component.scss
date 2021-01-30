@@ -1,27 +1,5 @@
-div.group{
-	padding:20px;
-	background:linen;
-	border-radius:5px;
-	h3{
-		margin-top:0px;
-		&.old{
-		color: darkblue;
-		font-size:1.5em;
-		}
-	}
-	p.faculty{
-		color:blue;
-	}
-	p.speciality{
-		font-size:0.8em;
-		color:brown;
-	}
-	img{
-		width:300px;
-		margin-bottom:20px;
-	}
-	.img-container{
-		text-align:center;
-		margin-bottom:20px;
-	}
+div.info{
+	background:#fff5fd;
+	border-radius:10px;
+	padding:10px;
 }
