@@ -4,10 +4,5 @@
 	</div>
 </nav>
 <div class="container">
-<app-new-group (group)="addGroup($event)"></app-new-group>
-<app-group 
-	*ngFor="let group of groups; let i = index"
-	[group]="group" [grpIndex]="i"
-	(removeGroup)="deleteGroup($event)">
-</app-group>	
+	<router-outlet></router-outlet>
 </div>
