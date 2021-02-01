@@ -8,6 +8,8 @@ import {DataGetterService, RockGroup} from '../service/data-getter.service';
 })
 export class HomePage {
 
+  userName: string;
+
 	groups: RockGroup[];
 
   showNew = false;
@@ -19,6 +21,7 @@ export class HomePage {
   				this.groups = data;
   			}
   		);
+    this.userName = this.dataGetter.getUser();
   }
 
 add() {

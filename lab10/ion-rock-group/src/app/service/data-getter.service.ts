@@ -28,6 +28,23 @@ export class DataGetterService {
 ];
  
 constructor() { }
+private userName = '';
+
+private users = [
+	'Max','Yana','Oliver'
+];
+
+getUser(){
+	return this.userName;
+}
+
+setUser(name: string){
+	this.userName = name;
+}
+
+userExist(name: string): boolean{
+	return this.users.indexOf(name) !== -1;
+}
 
 getGroups(): Observable<RockGroup[]>{
 	return of(this.groups);
