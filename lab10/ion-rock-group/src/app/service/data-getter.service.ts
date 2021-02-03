@@ -26,6 +26,22 @@ export class DataGetterService {
 		studentsQuantity: 6
 	}
 ];
+
+
+private students = [
+	{name:'Oliver Sykes', groupNumb:"BMTH",
+		gender:'man', rating:87},
+	{name:'Jordan Fish', groupNumb:"BMTH",
+		gender:'man', rating:80},
+	{name:'Matt Nicols', groupNumb:"BMTH",
+		gender:'man', rating:75},
+	{name:'Anatoliy Borisov', groupNumb:"Wildways",
+		gender:'man', rating:95},
+	{name:'Novikov Wild', groupNumb:"Wildways",
+		gender:'man', rating:90},
+	{name:'Den Wild', groupNumb:"Wildways",
+		gender:'man', rating:68},
+];
  
 constructor() { }
 private userName = '';
@@ -57,4 +73,10 @@ addGroup(group:RockGroup){
 deleteGroup(index){
 	this.groups.splice(index,1);
 	}
+
+getStudents(groupNumber: string): Observable<any[]>{
+	return of(this.students.filter(elem => {
+		return elem.groupNumb == groupNumber;
+	}));
+}
 }

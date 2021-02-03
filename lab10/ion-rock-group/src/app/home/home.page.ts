@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {DataGetterService, RockGroup} from '../service/data-getter.service';
+import {SharedDataService} from '../service/shared-data.service';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,7 @@ import {DataGetterService, RockGroup} from '../service/data-getter.service';
 })
 export class HomePage {
 
+  title = 'Rock Groups';
   userName: string;
 
 	groups: RockGroup[];
@@ -15,7 +17,8 @@ export class HomePage {
   showNew = false;
   showEdit = -1;
 
-  constructor(private dataGetter: DataGetterService) {
+  constructor(private dataGetter: DataGetterService,
+    private sharedData: SharedDataService) {
   	this.dataGetter.getGroups().subscribe(
   			(data) =>{
   				this.groups = data;
@@ -35,5 +38,10 @@ delete(index: number) {
 addGroup(group) {
   this.dataGetter.addGroup(group);
   this.showNew = false;
+}
+
+ionViewDidEnter(){
+  if(this.sharedData.getTextData()!='')
+    this.title = this.sharedData.getTextData();
 }
 }

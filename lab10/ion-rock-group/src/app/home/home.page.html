@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Rock groups
+      {{title}}
     </ion-title>
     <ion-buttons slot="secondary">
     ({{userName}})
@@ -43,6 +43,14 @@
           <ion-label>{{group.number}}</ion-label>
           <ion-note slot="end">{{group.specialty}}</ion-note>
         </ion-item>
+        <ion-item-option side="end">
+          <ion-item-option color="secondary"
+                           routerLink="/students/{{group.number}}"
+                           routerDirection="forward">
+            <ion-icon name="reorder-four-oultine"></ion-icon>
+            Musicians
+          </ion-item-option>
+        </ion-item-option>
       </ion-item-sliding>
       <app-rock-group *ngIf="showEdit==i" [isNew]="false"
       [rockGroup]="group"></app-rock-group>
