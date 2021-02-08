@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',/*home было раньше*/
+    redirectTo: 'http-test',/*home было раньше*/
     pathMatch: 'full'
   },
   {
@@ -24,6 +24,10 @@ const routes: Routes = [
       m => m.StudentsPageModule
       ),
     canActivate:[AuthGuard]
+  },
+  {
+    path: 'http-test',
+    loadChildren: () => import('./http-test/http-test.module').then( m => m.HttpTestPageModule)
   },
 ];
 
