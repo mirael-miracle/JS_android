@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'http-test',/*home было раньше*/
+    redirectTo: 'login',/*login было раньше*/
     pathMatch: 'full'
   },
   {

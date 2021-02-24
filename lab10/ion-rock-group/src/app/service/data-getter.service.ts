@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 export interface RockGroup{
 	number: string;
@@ -11,72 +12,41 @@ export interface RockGroup{
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataGetterService {
-	private groups: RockGroup[] = [
-	{
-		number: "BMTH",
-		faculty: "rock",
-		specialty:"metal",
-		studentsQuantity: 5
-	},
-	{
-		number:"Wildways",
-		faculty:"rock",
-		specialty:"deathcore",
-		studentsQuantity: 6
-	}
-];
+	baseUrl = 'http://localhost/api/';
+	groups = [];
+	students = [];
+	users = [];
 
-
-private students = [
-	{name:'Oliver Sykes', groupNumb:"BMTH",
-		gender:'man', rating:87},
-	{name:'Jordan Fish', groupNumb:"BMTH",
-		gender:'man', rating:80},
-	{name:'Matt Nicols', groupNumb:"BMTH",
-		gender:'man', rating:75},
-	{name:'Anatoliy Borisov', groupNumb:"Wildways",
-		gender:'man', rating:95},
-	{name:'Novikov Wild', groupNumb:"Wildways",
-		gender:'man', rating:90},
-	{name:'Den Wild', groupNumb:"Wildways",
-		gender:'man', rating:68},
-];
- 
-constructor() { }
-private userName = '';
-
-private users = [
-	'Max','Yana','Oliver'
-];
-
-getUser(){
-	return this.userName;
-}
-
-setUser(name: string){
-	this.userName = name;
-}
-
-userExist(name: string): boolean{
-	return this.users.indexOf(name) !== -1;
-}
-
-getGroups(): Observable<RockGroup[]>{
-	return of(this.groups);
+	constructor (private http: HttpClient){
 	}
 
-addGroup(group:RockGroup){
-	this.groups.push(group);
+	private userName = '';
+	private token = '';
+
+	checkUser(user){
+		return this.http.post<any>(this.baseUrl + '?action=login', user);
 	}
 
-deleteGroup(index){
-	this.groups.splice(index,1);
+	getUser(){
+		return this.userName;
 	}
 
-getStudents(groupNumber: string): Observable<any[]>{
-	return of(this.students.filter(elem => {
-		return elem.groupNumb == groupNumber;
-	}));
-}
+	setUser(name: string){
+		this.userName = name;
+	}
+
+	setToken(token: string){
+		this.token = token;
+	}
+
+	getGroups(){
+		return this.http.get<any>(this.baseUrl + '?action=get-groups&token=' + this.token);
+	}
+
+
+	getStudents(){}
+
+
 }

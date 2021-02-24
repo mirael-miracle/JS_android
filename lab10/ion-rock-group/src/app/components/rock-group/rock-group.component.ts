@@ -39,4 +39,5 @@ cancelAdding(){
 		this.cancelAddingGroup.emit();
 	}
 }
+
 }
