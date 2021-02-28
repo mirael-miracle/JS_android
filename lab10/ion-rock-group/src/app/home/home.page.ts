@@ -31,12 +31,28 @@ add() {
   this.showNew = true;
 }
 
-delete(index: number) {
-  this.dataGetter.deleteGroup(index);
+delete(group) {
+  this.dataGetter.delGroup(group).subscribe(
+      res =>{
+        this.dataGetter.getGroups().subscribe(
+        (data) =>{
+          this.groups = data;
+        }
+      );
+      }
+    );
 }
 
 addGroup(group) {
-  this.dataGetter.addGroup(group);
+  this.dataGetter.addGroup(group).subscribe(
+      res =>{
+        this.dataGetter.getGroups().subscribe(
+        (data) =>{
+          this.groups = data;
+        }
+      );
+      }
+    );
   this.showNew = false;
 }
 

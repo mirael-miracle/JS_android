@@ -1,5 +1,5 @@
 import { Component,EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {RockGroup} from '../../service/data-getter.service';
+import {DataGetterService, RockGroup} from '../../service/data-getter.service';
 
 @Component({
   selector: 'app-rock-group',
@@ -14,11 +14,12 @@ export class RockGroupComponent implements OnInit {
 	@Output() cancelAddingGroup = new EventEmitter();
 	title: string;
 
-  	constructor() { }
+  	constructor(private dataGetter: DataGetterService) { }
 
   ngOnInit() {
   	if(this.isNew){
   		this.rockGroup = {
+        id: null,
   			number: '',
   			specialty: '',
   			studentsQuantity: null,
@@ -39,5 +40,9 @@ cancelAdding(){
 		this.cancelAddingGroup.emit();
 	}
 }
-
+  saveGroup(){
+    this.dataGetter.editGroup(this.rockGroup).subscribe(
+      data => console.log(data)
+      );
+  }
 }

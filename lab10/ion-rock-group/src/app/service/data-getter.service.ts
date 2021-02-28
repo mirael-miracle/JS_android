@@ -3,6 +3,7 @@ import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
 export interface RockGroup{
+	id : number;
 	number: string;
 	faculty: string;
 	specialty: string;
@@ -45,8 +46,31 @@ export class DataGetterService {
 		return this.http.get<any>(this.baseUrl + '?action=get-groups&token=' + this.token);
 	}
 
+	addGroup(group){
+		return this.http.post<any>(
+			this.baseUrl = '?action=add_group&token=' + this.token,
+			group
+			);
+	}
 
-	getStudents(){}
+	delGroup(group){
+		return this.http.post<any>(
+			this.baseUrl = '?action=del_group&token=' + this.token,
+			group
+			);
+	}
 
+	getStudents(id: number){
+		return this.http.get<any>(
+			this.baseUrl = `?action=get-students&group=${id}&token=${this.token}`
+			);
+	}
+
+	editGroup(group){
+		return this.http.post<any>(
+			this.baseUrl = '?action=edit_group&token=' + this.token,
+			group
+			);
+	}
 
 }
