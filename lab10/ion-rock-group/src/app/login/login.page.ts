@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {DataGetterService} from '../service/data-getter.service';
 import {AlertController} from '@ionic/angular';
+import {FireDataGetterService} from '../service/fire-data-getter.service';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +10,22 @@ import {AlertController} from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-	userName:string;
-  passWord:string;
+    userName: string;
+    passWord: string;
 
 	constructor(
 		private router: Router,
 		private dataGetter: DataGetterService,
-		public alertController: AlertController) {}
+		public alertController: AlertController,
+    private fireDataGetter: FireDataGetterService) {}
 
   ngOnInit() {
+    this.fireDataGetter.getGroups().subscribe(
+      data => console.log(data)
+      );
   }
 
-  login(){
-  	this.dataGetter.checkUser({
+  login(){this.dataGetter.checkUser({
       username: this.userName,
       passwd: this.passWord
     }).subscribe(
